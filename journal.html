@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nhật ký tăng trưởng | Urban Garden</title>
+  <link rel="stylesheet" href="css/journal.css">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Backdrop cho sidebar trên thiết bị di động -->
+    <div id="sidebarBackdrop" class="sidebar-backdrop" aria-hidden="true"></div>
+
+    <!-- Sidebar điều hướng chính -->
+    <aside id="sidebar" class="sidebar" aria-label="Điều hướng chính">
+      <div class="sidebar-brand">
+        <span class="brand-logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
+            <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path>
+          </svg>
+        </span>
+        <div class="brand-text">
+          <span class="brand-name">Urban Garden</span>
+          <span class="brand-sub">Vườn phố &amp; Nông nghiệp Đô thị</span>
+        </div>
+        <button id="closeSidebarBtn" class="icon-btn sidebar-close-btn" type="button" aria-label="Đóng menu">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="index.html" class="nav-link">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+            <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+            <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+            <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+          </svg>
+          <span>Tổng quan</span>
+        </a>
+        <a href="library.html" class="nav-link">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 22v-9"></path>
+            <path d="M15.14 8.86a4 4 0 0 1 5.66 0 4 4 0 0 1 0 5.66l-2.83 2.83a4 4 0 0 1-5.66-5.66Z"></path>
+            <path d="M8.86 8.86a4 4 0 0 0-5.66 0 4 4 0 0 0 0 5.66l2.83 2.83a4 4 0 0 0 5.66-5.66Z"></path>
+          </svg>
+          <span>Thư viện cây</span>
+        </a>
+        <a href="journal.html" class="nav-link active" aria-current="page">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path>
+            <path d="M8 7h8"></path>
+            <path d="M8 11h6"></path>
+          </svg>
+          <span>Nhật ký tăng trưởng</span>
+        </a>
+        <a href="settings.html" class="nav-link">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"></path>
+          </svg>
+          <span>Cài đặt</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Nội dung chính -->
+    <div class="main-wrapper">
+      <header class="top-header">
+        <div class="header-left">
+          <button id="openSidebarBtn" class="icon-btn menu-toggle-btn" type="button" aria-label="Mở menu điều hướng" aria-expanded="false" aria-controls="sidebar">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+          <div class="project-title">
+            <span class="project-badge">Urban Garden</span>
+            <span class="project-desc">Hệ thống Quản lý Vườn phố &amp; Nông nghiệp Đô thị</span>
+          </div>
+        </div>
+        <div class="header-meta">
+          <span id="journalCountBadge" class="count-badge">0 ghi chép</span>
+        </div>
+      </header>
+
+      <main class="page-content">
+        <section class="page-hero">
+          <div>
+            <h1 class="page-title">Nhật ký tăng trưởng</h1>
+            <p class="page-subtitle">Ghi lại quá trình nảy mầm, ra lá, bón phân và thu hoạch của khu vườn đô thị.</p>
+          </div>
+        </section>
+
+        <!-- Thông báo trạng thái -->
+        <div id="statusToast" class="status-toast" role="status" aria-live="polite" hidden></div>
+
+        <div class="journal-grid">
+          <!-- Form thêm nhật ký -->
+          <section class="card form-card" aria-labelledby="formHeading">
+            <div class="card-header">
+              <h2 id="formHeading" class="card-title">Thêm nhật ký mới</h2>
+              <p class="card-hint">Theo dõi tình trạng phát triển theo từng ngày</p>
+            </div>
+
+            <form id="journalForm" class="journal-form" novalidate>
+              <div class="form-group">
+                <label for="plantSelect" class="form-label">
+                  Loại cây <span class="required">*</span>
+                </label>
+                <select id="plantSelect" name="plantId" class="form-control" required>
+                  <option value="">-- Chọn loại cây --</option>
+                </select>
+                <p id="catalogNotice" class="field-hint" hidden></p>
+                <p id="plantError" class="field-error" hidden></p>
+              </div>
+
+              <div class="form-group">
+                <label for="journalDate" class="form-label">
+                  Ngày ghi nhận <span class="required">*</span>
+                </label>
+                <input type="date" id="journalDate" name="date" class="form-control" required>
+                <p id="dateError" class="field-error" hidden></p>
+              </div>
+
+              <div class="form-group">
+                <label for="journalNote" class="form-label">
+                  Ghi chú chăm sóc &amp; tăng trưởng <span class="required">*</span>
+                </label>
+                <textarea
+                  id="journalNote"
+                  name="note"
+                  rows="4"
+                  class="form-control"
+                  placeholder="Ví dụ: Cây ra thêm 2 lá non, đất ẩm đều, đã bổ sung phân trùn quế..."
+                  required
+                ></textarea>
+                <p id="noteError" class="field-error" hidden></p>
+              </div>
+
+              <div class="form-group">
+                <label for="journalImage" class="form-label">
+                  Hình ảnh minh họa <span class="optional">(tối đa 700KB)</span>
+                </label>
+                <input
+                  type="file"
+                  id="journalImage"
+                  name="image"
+                  class="form-file"
+                  accept="image/*"
+                >
+                <p id="imageError" class="field-error" hidden></p>
+
+                <div id="imagePreviewBox" class="image-preview-box" hidden>
+                  <img id="imagePreview" src="" alt="Xem trước ảnh nhật ký">
+                  <button type="button" id="removeImageBtn" class="btn-remove-preview">
+                    Bỏ ảnh đã chọn
+                  </button>
+                </div>
+              </div>
+
+              <button type="submit" class="btn-primary">
+                Lưu nhật ký
+              </button>
+            </form>
+          </section>
+
+          <!-- Khu vực hiển thị Timeline nhật ký -->
+          <section class="timeline-section" aria-labelledby="timelineHeading">
+            <div class="section-header">
+              <h2 id="timelineHeading" class="section-title">Dòng thời gian phát triển</h2>
+              <span class="sort-label">Mới nhất trước</span>
+            </div>
+
+            <div id="journalEmptyState" class="card empty-state" hidden>
+              <div class="empty-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22v-9"></path>
+                  <path d="M15.14 8.86a4 4 0 0 1 5.66 0 4 4 0 0 1 0 5.66l-2.83 2.83a4 4 0 0 1-5.66-5.66Z"></path>
+                  <path d="M8.86 8.86a4 4 0 0 0-5.66 0 4 4 0 0 0 0 5.66l2.83 2.83a4 4 0 0 0 5.66-5.66Z"></path>
+                </svg>
+              </div>
+              <h3 class="empty-title">Chưa có nhật ký tăng trưởng nào</h3>
+              <p class="empty-text">Hãy chọn loại cây ở biểu mẫu bên cạnh và lưu ghi chép đầu tiên cho khu vườn của bạn.</p>
+            </div>
+
+            <div id="journalTimeline" class="timeline-list" aria-live="polite"></div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/journal.js"></script>
+</body>
+</html>
