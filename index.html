@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urban Garden – Khu vườn của tôi</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Lớp phủ cho sidebar trên thiết bị di động -->
+    <div id="sidebarBackdrop" class="sidebar-backdrop" aria-hidden="true"></div>
+
+    <!-- Sidebar điều hướng -->
+    <aside id="sidebar" class="sidebar" aria-label="Điều hướng chính">
+      <div class="sidebar-brand">
+        <span class="brand-logo" aria-hidden="true">🌿</span>
+        <div class="brand-text">
+          <span class="brand-title">Urban Garden</span>
+          <span class="brand-subtitle">Nông nghiệp Đô thị</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Danh mục trang">
+        <a href="index.html" class="nav-item active" aria-current="page">
+          <span class="nav-icon" aria-hidden="true">🏡</span>
+          <span class="nav-label">Tổng quan</span>
+        </a>
+        <a href="library.html" class="nav-item">
+          <span class="nav-icon" aria-hidden="true">📚</span>
+          <span class="nav-label">Thư viện cây</span>
+        </a>
+        <a href="journal.html" class="nav-item">
+          <span class="nav-icon" aria-hidden="true">📓</span>
+          <span class="nav-label">Nhật ký tăng trưởng</span>
+        </a>
+        <a href="settings.html" class="nav-item">
+          <span class="nav-icon" aria-hidden="true">⚙️</span>
+          <span class="nav-label">Cài đặt</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-tip">
+          <span class="tip-title">Mẹo chăm vườn</span>
+          <p class="tip-desc">Kiểm tra độ ẩm đất vào buổi sáng sớm hoặc chiều mát để cây hấp thu tốt nhất.</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Nội dung chính -->
+    <div class="main-wrapper">
+      <header class="top-header">
+        <div class="header-left">
+          <button
+            type="button"
+            id="menuToggleBtn"
+            class="menu-toggle-btn"
+            aria-label="Mở menu điều hướng"
+            aria-controls="sidebar"
+            aria-expanded="false"
+          >
+            ☰
+          </button>
+          <div class="garden-identity">
+            <span class="garden-label">Tên khu vườn</span>
+            <strong id="gardenNameDisplay" class="garden-name">Vườn Phố Urban Garden</strong>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <span id="currentDateDisplay" class="header-date"></span>
+
+          <div class="notification-wrapper">
+            <button
+              type="button"
+              id="notificationBtn"
+              class="notification-btn"
+              aria-label="Thông báo chăm sóc cây"
+              aria-expanded="false"
+              aria-controls="notificationPanel"
+            >
+              <span class="bell-icon" aria-hidden="true">🔔</span>
+              <span class="notification-text">Thông báo</span>
+              <span id="notificationBadge" class="notification-badge" hidden>0</span>
+            </button>
+
+            <section
+              id="notificationPanel"
+              class="notification-panel"
+              aria-label="Danh sách thông báo chăm sóc"
+              hidden
+            >
+              <header class="notification-panel-header">
+                <h2>Thông báo chăm sóc</h2>
+                <span id="notificationCountText" class="notification-count-text">0 nhắc nhở</span>
+              </header>
+              <ul id="notificationList" class="notification-list"></ul>
+            </section>
+          </div>
+        </div>
+      </header>
+
+      <main class="dashboard-main">
+        <!-- Tiêu đề trang -->
+        <section class="page-hero" aria-labelledby="pageTitle">
+          <div>
+            <h1 id="pageTitle" class="page-title">Khu vườn của tôi</h1>
+            <p id="gardenSummaryText" class="page-subtitle">Theo dõi độ ẩm, sức khỏe và lịch chăm sóc từng chậu cây đô thị.</p>
+          </div>
+        </section>
+
+        <!-- Thẻ thống kê -->
+        <section id="statsGrid" class="stats-grid" aria-label="Thống kê khu vườn"></section>
+
+        <!-- Lưới nội dung chính: Danh sách cây & Lịch chăm sóc -->
+        <div class="content-grid">
+          <section class="plants-section" aria-labelledby="plantsSectionTitle">
+            <div class="section-header">
+              <div>
+                <h2 id="plantsSectionTitle" class="section-title">Danh sách cây trồng</h2>
+                <p id="plantsCountLabel" class="section-subtitle">Đang hiển thị 0 cây</p>
+              </div>
+              <div class="filter-group" role="group" aria-label="Lọc trạng thái cây">
+                <button type="button" class="filter-btn active" data-filter="all">Tất cả</button>
+                <button type="button" class="filter-btn" data-filter="water">Cần tưới</button>
+                <button type="button" class="filter-btn" data-filter="fertilize">Cần bón phân</button>
+                <button type="button" class="filter-btn" data-filter="healthy">Khỏe mạnh</button>
+              </div>
+            </div>
+
+            <div id="plantList" class="plant-grid"></div>
+          </section>
+
+          <aside class="schedule-section" aria-labelledby="scheduleSectionTitle">
+            <div class="section-header schedule-header">
+              <div>
+                <h2 id="scheduleSectionTitle" class="section-title">Lịch chăm sóc sắp tới</h2>
+                <p class="section-subtitle">Ưu tiên công việc cần thực hiện sớm</p>
+              </div>
+            </div>
+            <ul id="scheduleList" class="schedule-list"></ul>
+          </aside>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/garden-store.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
