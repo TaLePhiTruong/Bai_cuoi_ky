@@ -314,11 +314,12 @@
       .join('');
   }
 
-  function buildPlantAvatarHtml(catalog, displayName) {
-    if (catalog && catalog.image) {
-      return `<img class="plant-avatar-img" src="${escapeHtml(catalog.image)}" alt="${escapeHtml(displayName)}">`;
+  function buildPlantAvatarHtml(plant, catalog, displayName) {
+    const imageSrc = plant?.image || catalog?.image;
+    if (imageSrc) {
+      return `<img class="plant-avatar-img" src="${escapeHtml(imageSrc)}" alt="${escapeHtml(displayName)}">`;
     }
-    return escapeHtml(catalog?.icon || '🌱');
+    return escapeHtml(plant?.icon || catalog?.icon || '🌱');
   }
 
   function renderPlantCards(enrichedPlants) {
@@ -361,7 +362,7 @@
         const health = clampPercent(plant.health);
         const moistureLowClass = moisture < 45 ? 'is-low' : '';
         const healthLowClass = health < 65 ? 'is-low' : '';
-        const avatarHtml = buildPlantAvatarHtml(care.catalog, displayName);
+        const avatarHtml = buildPlantAvatarHtml(plant, care.catalog, displayName);
 
         const badgesHtml = care.messages
           .map((msg) => `<span class="care-badge">• ${escapeHtml(msg)}</span>`)
@@ -633,6 +634,9 @@
 
     // Đồng bộ giao diện nếu LocalStorage thay đổi từ tab/trang khác
     global.addEventListener('storage', (event) => {
+      if (event.key === SETTINGS_STORAGE_KEY) {
+        loadHeaderMeta();
+      }
       if (event.key === 'ugarden_plants' || JOURNAL_STORAGE_KEYS.includes(event.key)) {
         renderDashboard();
       }

@@ -206,17 +206,20 @@
       return null;
     }
 
+    const resolvedPlantId = catalogItem.id || catalogItem.plantId || plantId;
     const plants = getPlants();
-    const isDuplicate = plants.some((plant) => plant.plantId === plantId);
+    const isDuplicate = plants.some(
+      (plant) => plant.plantId === resolvedPlantId || plant.plantId === plantId
+    );
     if (isDuplicate) {
       return null;
     }
 
     const nowIso = new Date().toISOString();
     const newPlant = {
-      id: `plant-${plantId}-${Date.now()}`,
-      plantId: catalogItem.id || plantId,
-      nickname: catalogItem.name || plantId,
+      id: `plant-${resolvedPlantId}-${Date.now()}`,
+      plantId: resolvedPlantId,
+      nickname: catalogItem.name || resolvedPlantId,
       location: catalogItem.defaultLocation || 'Khu vườn ban công',
       moisture: typeof catalogItem.idealMoisture === 'number' ? catalogItem.idealMoisture : 70,
       health: 90,
@@ -232,7 +235,7 @@
 
   /**
    * Cập nhật lịch sử chăm sóc ("water" hoặc "fertilize") theo id cây.
-   * @param {string} id
+   * @param {string|number} id
    * @param {"water"|"fertilize"} careType
    * @returns {Object|null}
    */
@@ -240,9 +243,13 @@
     if (careType !== 'water' && careType !== 'fertilize') {
       return null;
     }
+    if (id === undefined || id === null || id === '') {
+      return null;
+    }
 
     const plants = getPlants();
-    const index = plants.findIndex((plant) => plant.id === id);
+    const targetId = String(id);
+    const index = plants.findIndex((plant) => String(plant.id) === targetId);
     if (index === -1) {
       return null;
     }

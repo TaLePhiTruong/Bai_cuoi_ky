@@ -620,6 +620,7 @@ ul {
   padding: 6px 10px;
   border-radius: 8px;
   width: fit-content;
+  max-width: 100%;
 }
 
 /* Progress Bars */
@@ -816,6 +817,7 @@ ul {
   align-items: center;
   gap: 10px;
   min-width: 0;
+  max-width: 100%;
 }
 
 .schedule-icon {
