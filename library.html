@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thư viện cây trồng | Urban Garden</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="css/library.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div id="sidebarBackdrop" class="sidebar-backdrop" aria-hidden="true"></div>
+
+    <!-- Sidebar điều hướng -->
+    <aside id="sidebar" class="sidebar" aria-label="Điều hướng chính">
+      <div class="sidebar-brand">
+        <span class="brand-logo" aria-hidden="true">🌱</span>
+        <div class="brand-text">
+          <span class="brand-name">Urban Garden</span>
+          <span class="brand-tagline">Vườn phố thông minh</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="index.html" class="nav-item">
+          <span class="nav-icon" aria-hidden="true">🏡</span>
+          <span class="nav-label">Tổng quan</span>
+        </a>
+        <a href="library.html" class="nav-item active" aria-current="page">
+          <span class="nav-icon" aria-hidden="true">📚</span>
+          <span class="nav-label">Thư viện cây</span>
+        </a>
+        <a href="journal.html" class="nav-item">
+          <span class="nav-icon" aria-hidden="true">📓</span>
+          <span class="nav-label">Nhật ký tăng trưởng</span>
+        </a>
+        <a href="settings.html" class="nav-item">
+          <span class="nav-icon" aria-hidden="true">⚙️</span>
+          <span class="nav-label">Cài đặt</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-tip-card">
+          <p class="sidebar-tip-title">Mẹo vườn phố</p>
+          <p class="sidebar-tip-desc">
+            Chọn giống cây phù hợp với lượng nắng tại ban công hoặc sân thượng để đạt năng suất tốt nhất.
+          </p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Nội dung chính -->
+    <div class="main-wrapper">
+      <header class="top-header">
+        <div class="header-left">
+          <button
+            id="sidebarToggle"
+            class="icon-btn mobile-menu-btn"
+            type="button"
+            aria-label="Mở menu điều hướng"
+            aria-controls="sidebar"
+            aria-expanded="false"
+          >
+            ☰
+          </button>
+          <div class="header-breadcrumb">
+            <span class="breadcrumb-root">Urban Garden</span>
+            <span class="breadcrumb-sep" aria-hidden="true">/</span>
+            <span class="breadcrumb-current">Thư viện cây</span>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <div class="garden-pill" title="Số giống cây hiện có trong vườn">
+            <span aria-hidden="true">🪴</span>
+            <span>Đang trồng: <strong id="gardenCount">0</strong></span>
+          </div>
+          <a href="index.html" class="header-action-link">Về khu vườn →</a>
+        </div>
+      </header>
+
+      <main class="main-content">
+        <section class="page-hero">
+          <div class="page-hero-text">
+            <span class="page-eyebrow">Danh mục giống cây đô thị</span>
+            <h1>Thư viện cây trồng</h1>
+            <p class="page-subtitle">
+              Tra cứu thông tin ánh sáng, độ ẩm, lịch tưới bón và thêm nhanh giống cây phù hợp vào khu vườn của bạn.
+            </p>
+          </div>
+        </section>
+
+        <!-- Thanh tìm kiếm & Bộ lọc -->
+        <section class="controls-bar" aria-label="Tìm kiếm và lọc cây trồng">
+          <div class="search-box">
+            <span class="search-icon" aria-hidden="true">🔍</span>
+            <label for="searchInput" class="sr-only">Tìm kiếm cây trồng</label>
+            <input
+              id="searchInput"
+              type="search"
+              class="search-input"
+              placeholder="Tìm kiếm theo tên cây hoặc mô tả (ví dụ: cà chua, ban công...)"
+              autocomplete="off"
+            />
+            <button
+              id="clearSearchBtn"
+              type="button"
+              class="clear-search-btn"
+              aria-label="Xóa từ khóa tìm kiếm"
+              hidden
+            >
+              ✕
+            </button>
+          </div>
+
+          <div class="filter-group" role="group" aria-label="Lọc theo nhóm cây">
+            <button type="button" class="filter-btn active" data-category="all">
+              Tất cả
+            </button>
+            <button type="button" class="filter-btn" data-category="Rau ăn lá">
+              🥬 Rau ăn lá
+            </button>
+            <button type="button" class="filter-btn" data-category="Rau ăn quả">
+              🍅 Rau ăn quả
+            </button>
+            <button type="button" class="filter-btn" data-category="Cây gia vị">
+              🌿 Cây gia vị
+            </button>
+          </div>
+        </section>
+
+        <div class="results-meta">
+          <p id="resultsSummary" class="results-summary">Đang tải danh sách cây trồng...</p>
+        </div>
+
+        <!-- Danh sách Plant Cards dạng Grid -->
+        <section id="plantGrid" class="plant-grid" aria-label="Danh sách cây trồng"></section>
+
+        <!-- Trạng thái không tìm thấy kết quả -->
+        <section id="emptyState" class="empty-state" hidden>
+          <div class="empty-state-icon" aria-hidden="true">🌾</div>
+          <h2>Không tìm thấy cây trồng phù hợp</h2>
+          <p>Hãy thử từ khóa khác hoặc đặt lại bộ lọc để xem toàn bộ thư viện.</p>
+          <button id="resetFiltersBtn" type="button" class="btn-reset">
+            Hiển thị tất cả cây
+          </button>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Thông báo Toast -->
+  <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="js/plants-data.js"></script>
+  <script src="js/garden-store.js"></script>
+  <script src="js/library.js"></script>
+</body>
+</html>
