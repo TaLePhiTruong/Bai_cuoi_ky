@@ -1,0 +1,586 @@
+/**
+ * Urban Garden - Design System & Base CSS
+ * File: css/base.css
+ * 
+ * Bảng màu & Quy chuẩn:
+ * - Primary: Xanh lá đậm (#23533a)
+ * - Secondary: Xanh lá nhạt (#5bb286)
+ * - Background: Trắng kem (#f9f9f6)
+ * - Text: Xanh đen/xám đậm (#1e2923)
+ * - Warning: Vàng cam (#e67e22)
+ * - Danger: Đỏ nhạt (#e05252)
+ *
+ * Các thành viên nhóm sử dụng các class và biến CSS trong file này
+ * để đảm bảo toàn bộ hệ thống thống nhất giao diện chuẩn SaaS.
+ */
+
+/* ==========================================================================
+   1. CSS VARIABLES (DESIGN TOKENS)
+   ========================================================================== */
+:root {
+  /* Bảng màu chính (Bắt buộc theo đặc tả) */
+  --primary-color: #23533a;       /* Xanh lá đậm thanh lịch, chuyên nghiệp */
+  --primary-hover: #1b412e;       /* Trạng thái hover của primary */
+  --primary-light: #eaf3ed;       /* Nền xanh nhạt cho tag, active menu */
+  --secondary-color: #5bb286;     /* Xanh lá tươi nhạt */
+  --secondary-hover: #4a9e73;     /* Hover secondary */
+  --background-color: #f9f9f6;    /* Trắng kem tự nhiên, chống lóa */
+  --surface-color: #ffffff;       /* Nền thẻ, sidebar, header */
+  --text-color: #1e2923;          /* Màu chữ chính - xanh đen than tre */
+  --muted-color: #64748b;         /* Màu chữ phụ, chú thích */
+  --border-color: #e2e8f0;        /* Viền sáng tối giản */
+  --shadow: 0 4px 20px -2px rgba(27, 67, 50, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 25px -5px rgba(27, 67, 50, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+
+  /* Màu trạng thái bổ trợ */
+  --warning-color: #e67e22;      /* Vàng cam dịu */
+  --warning-light: #fef6ee;
+  --danger-color: #e05252;       /* Đỏ nhạt êm mắt */
+  --danger-light: #fef2f2;
+  --success-color: #23533a;
+  --success-light: #eaf3ed;
+
+  /* Kích thước & Bo góc */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Sidebar & Header dimensions */
+  --sidebar-width: 260px;
+  --topbar-height: 70px;
+
+  /* Chuyển động & Font chữ */
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* ==========================================================================
+   2. RESET & NỀN TẢNG (BASE RESET)
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img, svg {
+  vertical-align: middle;
+}
+
+/* ==========================================================================
+   3. BỐ CỤC CHUNG (APP LAYOUT SYSTEM)
+   ========================================================================== */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+  background-color: var(--background-color);
+}
+
+/* Sidebar bên trái */
+.sidebar {
+  width: var(--sidebar-width);
+  background-color: var(--surface-color);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 100;
+  transition: transform 0.3s ease, width 0.3s ease;
+  overflow-y: auto;
+}
+
+/* Thương hiệu / Logo trong Sidebar */
+.brand {
+  height: var(--topbar-height);
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  border-bottom: 1px solid var(--border-color);
+  letter-spacing: -0.02em;
+}
+
+.brand-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background-color: var(--primary-light);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+  flex-shrink: 0;
+}
+
+/* Danh sách Menu Sidebar */
+.sidebar-nav {
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  list-style: none;
+  flex: 1;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  color: var(--muted-color);
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.nav-link .nav-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.nav-link:hover {
+  background-color: var(--primary-light);
+  color: var(--primary-color);
+}
+
+.nav-link.active {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(35, 83, 58, 0.2);
+}
+
+.nav-link.active .nav-icon {
+  color: #ffffff;
+}
+
+/* Main Content Area */
+.main-content {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 100vh;
+  transition: margin-left 0.3s ease;
+}
+
+/* Topbar Header */
+.topbar {
+  height: var(--topbar-height);
+  background-color: var(--surface-color);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  position: sticky;
+  top: 0;
+  z-index: 90;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Nút toggle Sidebar trên Mobile/Tablet */
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  color: var(--text-color);
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-toggle:hover {
+  background-color: var(--background-color);
+}
+
+/* Page Content & Page Title */
+.page-content {
+  padding: 32px;
+  flex: 1;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.page-header {
+  margin-bottom: 28px;
+}
+
+.page-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-color);
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+
+.page-subtitle {
+  color: var(--muted-color);
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   4. THẺ CARD (CARD COMPONENT)
+   ========================================================================== */
+.card {
+  background-color: var(--surface-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
+  padding: 28px;
+  transition: var(--transition);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.card-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.card-body {
+  width: 100%;
+}
+
+.card-footer {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* ==========================================================================
+   5. NÚT BẤM (BUTTONS)
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 22px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: inherit;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: var(--transition);
+  line-height: 1.25;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+  box-shadow: 0 4px 14px rgba(35, 83, 58, 0.3);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+  color: #ffffff;
+}
+
+.btn-secondary:hover {
+  background-color: var(--secondary-hover);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border-color: var(--border-color);
+  color: var(--text-color);
+}
+
+.btn-outline:hover {
+  background-color: var(--background-color);
+  border-color: var(--muted-color);
+}
+
+/* ==========================================================================
+   6. BIỂU MẪU & INPUTS (FORM CONTROLS)
+   ========================================================================== */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 8px;
+}
+
+.form-label .required {
+  color: var(--danger-color);
+  margin-left: 2px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 11px 14px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: var(--text-color);
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+}
+
+.form-control::placeholder {
+  color: #a0aec0;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(35, 83, 58, 0.15);
+}
+
+.form-control.is-invalid {
+  border-color: var(--danger-color);
+  box-shadow: 0 0 0 3px rgba(224, 82, 82, 0.15);
+}
+
+.invalid-feedback {
+  display: none;
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: var(--danger-color);
+  font-weight: 500;
+}
+
+.form-control.is-invalid + .invalid-feedback {
+  display: block;
+}
+
+.form-text {
+  margin-top: 6px;
+  font-size: 0.825rem;
+  color: var(--muted-color);
+}
+
+/* ==========================================================================
+   7. HỆ THỐNG GRID DÙNG CHUNG (RESPONSIVE GRID)
+   ========================================================================== */
+.grid {
+  display: grid;
+  gap: 24px;
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* ==========================================================================
+   8. THÔNG BÁO (ALERTS & TOASTS)
+   ========================================================================== */
+.alert {
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.alert-success {
+  background-color: var(--success-light);
+  color: var(--success-color);
+  border: 1px solid rgba(35, 83, 58, 0.2);
+}
+
+.alert-warning {
+  background-color: var(--warning-light);
+  color: var(--warning-color);
+  border: 1px solid rgba(230, 126, 34, 0.2);
+}
+
+.alert-danger {
+  background-color: var(--danger-light);
+  color: var(--danger-color);
+  border: 1px solid rgba(224, 82, 82, 0.2);
+}
+
+/* Overlay khi mở menu trên thiết bị nhỏ */
+.sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(2px);
+  z-index: 95;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar-backdrop.active {
+  display: block;
+  opacity: 1;
+}
+
+/* ==========================================================================
+   9. ĐÁP ỨNG THIẾT BỊ (RESPONSIVE RULES)
+   ========================================================================== */
+
+/* Tablet & Màn hình vừa (dưới 1024px) */
+@media (max-width: 1024px) {
+  :root {
+    --sidebar-width: 240px;
+  }
+
+  .page-content {
+    padding: 24px 20px;
+  }
+
+  .grid-cols-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid-cols-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Mobile & Màn hình nhỏ (dưới 768px) */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  /* Sidebar trượt từ bên trái ra (Drawer) */
+  .sidebar {
+    transform: translateX(-100%);
+    width: 270px;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  /* Main content chiếm trọn chiều rộng */
+  .main-content {
+    margin-left: 0;
+  }
+
+  .topbar {
+    padding: 0 16px;
+  }
+
+  .page-content {
+    padding: 20px 16px;
+  }
+
+  .page-title {
+    font-size: 1.4rem;
+  }
+
+  .card {
+    padding: 20px 16px;
+  }
+
+  /* Tự động chuyển các grid đa cột thành 1 cột */
+  .grid-cols-2,
+  .grid-cols-3,
+  .grid-cols-4 {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Form controls hiển thị tốt trên màn hình nhỏ */
+  .form-control {
+    font-size: 16px; /* Ngăn iOS zoom tự động khi focus */
+    padding: 12px 14px;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 13px 20px;
+  }
+
+  .card-footer {
+    flex-direction: column-reverse;
+  }
+}
